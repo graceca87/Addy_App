@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Address Book {% endblock title %}
+
+{% block content %}
+
+<form>
+    {{ form.csrf_token }}
+    <div class="form-group">
+        {{ form.name.label }}
+        {{ form.name(class = 'form-control', placeholder='Enter Full Name') }}
+
+        {{ form.number.label }}
+        {{ form.number(class = 'form-control', placeholder='Enter Phone Number') }}
+
+        {{ form.address.label }}
+        {{ form.address(class = 'form-control', placeholder='Enter Address') }}
+
+        {{ form.email.label }}
+        {{ form.email(class = 'form-control', placeholder='Enter Email') }}
+
+        {{ form.submit(class = 'btn btn-primary w-100 mt-3') }}
+    </div>
+</form>
+
+{% endblock content %}
