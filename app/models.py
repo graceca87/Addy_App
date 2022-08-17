@@ -9,3 +9,8 @@ class Contact(db.Model):
     address = db.Column(db.String(100), nullable=False, unique=True)
     email = db.Column(db.String(50), nullable=False, unique=True)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        db.session.add(self)
+        db.session.commit()
