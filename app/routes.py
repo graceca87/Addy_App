@@ -19,5 +19,5 @@ def add_contacts():
         number = form.number.data
         address = form.address.data
         email = form.email.data
-        new_contact = Contact(name=name, number=number, address=address, email=email)
+        contact = Contact(name=name, number=number, address=address, email=email)
     return render_template('add_contact.html', form=form)
