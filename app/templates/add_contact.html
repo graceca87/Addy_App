@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<form>
+<form method="POST">
     {{ form.csrf_token }}
     <div class="form-group mt-4">
         {{ form.name.label }}
@@ -18,11 +18,8 @@
 
         {{ form.email.label(class= 'mt-2') }}
         {{ form.email(class = 'form-control fw-lighter', placeholder='Enter Email') }}
-        
-        <form method="POST">
-            <button class="btn btn-secondary w-100 mt-3 text-white"
-            <button type="submit" name="submit">Submit</button>
-        </form>
+
+        {{ form.submit(class='btn btn-secondary w-100 mt-3') }}
     </div>
 </form>
 
