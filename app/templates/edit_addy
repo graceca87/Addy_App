@@ -9,19 +9,31 @@
     {{ form.csrf_token }}
     <div class="form-group mt-4">
         {{ form.first_name.label }}
-        {{ form.name(class = 'form-control fw-lighter', value=addy.first_name') }}
+        {{ form.first_name(class = 'form-control fw-lighter', value=contact.first_name }}
 
         {{ form.last_name.label }}
-        {{ form.name(class = 'form-control fw-lighter', value=addy.last_name') }}
+        {{ form.last_name(class = 'form-control fw-lighter', value=contact.last_name) }}
 
-        {{ form.number.label(class= 'mt-2') }}
-        {{ form.number(class = 'form-control fw-lighter', placeholder='Enter Phone Number') }}
+        {{ form.phone_number.label(class= 'mt-2') }}
+        {{ form.phone_number(class = 'form-control fw-lighter', value=contact.phone_number) }}
 
-        {{ form.address.label(class= 'mt-2') }}
-        {{ form.address(class = 'form-control fw-lighter', placeholder='Enter Address') }}
+        {{ form.street_address.label(class= 'mt-2') }}
+        {{ form.street_address(class = 'form-control fw-lighter', value=contact.street_address) }}
+
+        {{ form.city.label(class= 'mt-2') }}
+        {{ form.city(class = 'form-control fw-lighter', value=contact.city) }}
+
+        {{ form.state.label(class= 'mt-2') }}
+        {{ form.state(class = 'form-control fw-lighter', value=contact.state) }}
+
+        {{ form.country.label(class= 'mt-2') }}
+        {{ form.country(class = 'form-control fw-lighter', value=contact.country) }}
+
+        {{ form.state.label(class= 'mt-2') }}
+        {{ form.state(class = 'form-control fw-lighter', value=contact.state) }}
 
         {{ form.email.label(class= 'mt-2') }}
-        {{ form.email(class = 'form-control fw-lighter', placeholder='Enter Email') }}
+        {{ form.email(class = 'form-control fw-lighter', value=contact.email) }}
 
         {{ form.submit(class='btn btn-secondary w-100 mt-3') }}
     </div>

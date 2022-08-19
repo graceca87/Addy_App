@@ -6,12 +6,16 @@ from flask_login import UserMixin
 
 class Contact(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
-    number = db.Column(db.String(15), nullable=False, unique=True)
-    address = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(50), nullable=False, unique=True)
+    first_name = db.Column(db.String(50), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
+    phone_number = db.Column(db.String(15), nullable=False)
+    street_address = db.Column(db.String(50), nullable=False)
+    city = db.Column(db.String(10), nullable=False)
+    state = db.Column(db.String(10), nullable=False)
+    country = db.Column(db.String(10), nullable=False)
+    zip_code = db.Column(db.String(10), nullable=False)
+    email = db.Column(db.String(50), nullable=False)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    # add foreign key (user_id REFERENCES User(id))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
 
     def __init__(self, **kwargs):
@@ -20,13 +24,13 @@ class Contact(db.Model):
         db.session.commit()
 
     def __repr__(self):
-        return f'<Address | {self.name}>'
+        return f'<Address | {self.street_address}>'
 
     def __str__(self):
         return f"""
-        Name: {self.name}
-        Phone Number: {self.number}
-        Address: {self.address}
+        Name: {self.first_name}{self.last_name}
+        Phone Number: {self.phone_number}
+        Address: {self.street_address}
         Email: {self.email}
         """
 
@@ -36,7 +40,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(50), nullable=False, unique=True)
     password = db.Column(db.String(256), nullable=False)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    contacts = db.relationship('Contact', backref='book_keeper', lazy='dynamic')
+    contacts = db.relationship('Contact', backref='book_owner', lazy='dynamic')
     
 
     def __init__(self, **kwargs):
@@ -54,6 +58,7 @@ class User(db.Model, UserMixin):
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
+        db.session.commit
 
 #LoginManager takes in id and stores it across requests. This callback is used to reload the user object
 @login.user_loader

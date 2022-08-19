@@ -1,29 +1,35 @@
 from app import app
 from flask import render_template, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
-from app.forms import AddressBook, SignUpForm, LoginForm
-from app.models import Contact, User
+from app.forms import SignUpForm, AddyForm, LoginForm
+from app.models import User, Contact
 
 
 @app.route('/')
 def index():
-    addresses = []
-    return render_template("index.html", addresses=addresses)
+    contacts = Contact.query.all()
+    return render_template("index.html", contacts=contacts)
 
 @app.route('/phone_book', methods=['GET', 'Post'])
 @login_required
-def add_contacts():
-    form = AddressBook()
+def add_addy():
+    form = AddyForm()
+    states = ["Alabama", "Alaska", "Arizona"]
     if form.validate_on_submit():
-        name = form.name.data
-        number = form.number.data
-        address = form.address.data
+        first_name = form.first_name.data
+        last_name = form.first_name.data
+        phone_number = form.phone_number.data
+        street_address = form.street_address.data
+        city = form.city.data
+        state = form.state.data
+        country = form.country.data
+        zip_code = form.zip_code.data
         email = form.email.data
-        contact = Contact(name=name, number=number, address=address, email=email, user_id=current_user.id)
+        contact = Contact(first_name=first_name, last_name=last_name, phone_number=phone_number, street_address=street_address, city=city, state=state, country=country, zip_code=zip_code, email=email, user_id=current_user.id)
         print('Form has been validated! Hooray!!')
         print(contact)
         return redirect(url_for('index'))
-    return render_template('add_contact.html', form=form)
+    return render_template('add_addy.html', form=form, states=states)
 
 
 @app.route('/signup', methods=["GET", "POST"])
@@ -54,14 +60,14 @@ def login():
         username = form.username.data
         password = form.password.data
         # Query user table for a user with the same username as the form
-        user = user.query.filter_by(username=username).first()
+        user = User.query.filter_by(username=username).first()
         # if user exists and password is correct for that user
         if user is not None and user.check_password(password):
             # Log the user in with the login_user function from flask_login
             login_user(user)
             # Flash a success message
             flash(f'Welcome back {user.username}!', 'success')
-            # Redirect back to the home page
+            # Redirect back to the home pageUnboundLocalError: local variable 'user' referenced before assignment
             return redirect(url_for('index'))
         # If no user with username or password incorrect
         else:

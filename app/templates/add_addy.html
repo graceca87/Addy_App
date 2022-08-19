@@ -1,26 +1,112 @@
 {% extends 'base.html' %}
-
-{% block title %} Address Book {% endblock title %}
-
 {% block content %}
+
+{% block title %} Add Addy {% endblock title %}
+
+   
+<h2 class="text-center"> + Add New Addy + </h2>
 
 <form method="POST">
     {{ form.csrf_token }}
-    <div class="form-group mt-4">
-        {{ form.name.label }}
-        {{ form.name(class = 'form-control fw-lighter', placeholder='Enter Full Name') }}
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                {{ form.first_name.label }}
+                {{ form.first_name(class = "form-control") }}
+            </div>
+            <div class="form-group col-md-6">
+                {{ form.last_name.label }}
+                {{ form.last_name(class = "form-control") }}
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            {{ form.phone_number.label }}
+            {{ form.phone_number(class = 'form-control') }}
+        </div> <div class="form-group col-md-6">
+            {{ form.street_address.label }}
+            {{ form.street_address(class = 'form-control') }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form.city.label }}
+            {{ form.city(class = 'form-control') }}
+        </div>
+        <!-- Need to figure this one out -->
+        <div class="form-group col-md-4">
+            <label for="inputState">State</label>
+            <select id="inputState" class="form-control">
+                <option selected>Choose...</option>
+                {% for state in states %}
 
-        {{ form.number.label(class= 'mt-2') }}
-        {{ form.number(class = 'form-control fw-lighter', placeholder='Enter Phone Number') }}
+                    <option>{{ state }}</option>
 
-        {{ form.address.label(class= 'mt-2') }}
-        {{ form.address(class = 'form-control fw-lighter', placeholder='Enter Address') }}
-
-        {{ form.email.label(class= 'mt-2') }}
-        {{ form.email(class = 'form-control fw-lighter', placeholder='Enter Email') }}
-
-        {{ form.submit(class='btn btn-secondary w-100 mt-3') }}
-    </div>
+                {% endfor %}
+                <!-- <option>Alabama</option>
+                <option>Alaska</option>
+                <option>Arizona</option>
+                <option>Arkansas</option>
+                <option>California</option>
+                <option>Colorodo</option>
+                <option>Connecticut</option>
+                <option>Delware</option>
+                <option>Florida</option>
+                <option>Georgie</option>
+                <option>Hawaii</option>
+                <option>Idaho</option>
+                <option>Illinois</option>
+                <option>Indiana</option>
+                <option>Iowa</option>
+                <option>Kansas</option>
+                <option>Kentucky</option>
+                <option>Louisiana</option>
+                <option>Maine</option>
+                <option>Maryland</option>
+                <option>Massachusetts</option>
+                <option>Michigan</option>
+                <option>Minnesota</option>
+                <option>Mississippi</option>
+                <option>Missouri</option>
+                <option>Montana</option>
+                <option>Nebraska</option>
+                <option>Nevada</option>
+                <option>New Hampshire</option>
+                <option>New Jersey</option>
+                <option>New Mexico</option>
+                <option>New York</option>
+                <option>North Carolina</option>
+                <option>North Dakota</option>
+                <option>Ohio</option>
+                <option>Oklahoma</option>
+                <option>Oregon</option>
+                <option>Pennsylvania</option>
+                <option>Rhode Island</option>
+                <option>South Carolina</option>
+                <option>Tennessee</option>
+                <option>Texas</option>
+                <option>Utah</option>
+                <option>Vermont</option>
+                <option>Virginia</option>
+                <option>Washington</option>
+                <option>West Virgina</option>
+                <option>Wisconsin</option>
+                <option>Wyoming</option>
+                <option>N/A</option> -->
+        
+            </select>
+            <div>
+                {{ form.country.label }}
+                {{ form.country(class = 'form-control form-group col-md-6') }}
+            </div>
+            </div>
+            <div>
+                {{ form.zip_code.label }}
+                {{ form.zip_code(class = 'form-control form-group col-md-2') }}
+            </div>
+            <div>
+                {{ form.submit(class='btn btn-primary w-5 mt-3') }}
+            </div>
+        </div>
+    </form>
 </form>
+
 
 {% endblock content %}
