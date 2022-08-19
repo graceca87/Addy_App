@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Addy{% endblock title %}
+
+{% block content %}
+<h2 class="text-center">Edit Addy</h2>
+
+<form method="POST">
+    {{ form.csrf_token }}
+    <div class="form-group mt-4">
+        {{ form.first_name.label }}
+        {{ form.name(class = 'form-control fw-lighter', value=addy.first_name') }}
+
+        {{ form.last_name.label }}
+        {{ form.name(class = 'form-control fw-lighter', value=addy.last_name') }}
+
+        {{ form.number.label(class= 'mt-2') }}
+        {{ form.number(class = 'form-control fw-lighter', placeholder='Enter Phone Number') }}
+
+        {{ form.address.label(class= 'mt-2') }}
+        {{ form.address(class = 'form-control fw-lighter', placeholder='Enter Address') }}
+
+        {{ form.email.label(class= 'mt-2') }}
+        {{ form.email(class = 'form-control fw-lighter', placeholder='Enter Email') }}
+
+        {{ form.submit(class='btn btn-secondary w-100 mt-3') }}
+    </div>
+</form>
+
+{% endblock content %}
+
+
+{% block content %}
+
+
+<form method="post">
+    {{ form.csrf_token }}
+    <div class="form-group">
+        {{ form.title.label }}
+        {{ form.title(class='form-control', value=post.title) }}
+        
+        {{ form.body.label }}
+        {{ form.body(class='form-control', value=post.body) }}
+
+        {{ form.submit(class='btn btn-secondary w-100 mt-3') }}
+    </div>
+</form>
+
+{% endblock content %}
