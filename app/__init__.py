@@ -10,7 +10,8 @@ app.config.from_object(Config)
 # Create an instance of SQLAlchemy (the ORM) with the Flask Application
 db = SQLAlchemy(app)
 # Create an instance of Migrate which will be our migration engine and pass in the app and SQLAlchemy instance
-migrate = Migrate(app, db, render_as_batch=True)
+migrate = Migrate(app, db)
+# render_as_batch=True
 # Create an instance of the LoginManager to handle authentication
 login = LoginManager(app)
 login.login_view = 'login' # Tells login manager which enpoint to redirect if not logged in

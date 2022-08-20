@@ -3,19 +3,23 @@
 {% block title %} Login {% endblock title %}
 
 {% block content %}
-<h2 class="text-center">Login Here!</h2>
 
-<form method="post">
-    {{ form.csrf_token }}
-    <div class="form-group">
-        {{ form.username.label }}
-        {{ form.username(class='form-control', placeholder='Enter Username') }}
+<div class="card mt-4 rounded w-50 mx-auto">
+    <h5 class="card-header text-center text-white" style="background-color:#4fbfa8;">Sign Up</h5>
+    <div class="card-body">
+        <form method="post">
+            {{ form.csrf_token }}
+            <div class="form-group">
+                {{ form.username.label }}
+                {{ form.username(class='form-control', placeholder='Enter Username') }}
 
-        {{ form.password.label }}
-        {{ form.password(class='form-control', placeholder='Enter Password') }}
+                {{ form.password.label }}
+                {{ form.password(class='form-control', placeholder='Enter Password') }}
 
-        {{ form.submit(class='btn btn-primary w-100 mt-3') }}
+                {{ form.submit(class='btn btn-secondary w-100 mt-3') }}
+            </div>
+        </form>
     </div>
-</form>
+</div>
 
 {% endblock content %}

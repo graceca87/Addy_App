@@ -1,112 +1,72 @@
+
+
 {% extends 'base.html' %}
 {% block content %}
 
-{% block title %} Add Addy {% endblock title %}
-
+{% block title %} {% endblock title %}
+<!-- Why is this showing up in the body?  -->
    
-<h2 class="text-center"> + Add New Addy + </h2>
 
-<form method="POST">
-    {{ form.csrf_token }}
-    <form>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                {{ form.first_name.label }}
-                {{ form.first_name(class = "form-control") }}
+<div class="card mt-4 rounded max-width: 75rem;">
+    <h5 class="card-header text-center text-white" style="background-color:#4fbfa8">Enter Addy Info:</h5>
+    <div class="card-body">
+        <form method="POST">
+            {{ form.csrf_token }}
+            <div class="d-flex flex-row justify-content-around">
+                <div class="p-2 col-4">
+                    {{ form.first_name.label }}
+                    {{ form.first_name(class = "form-control") }}
+                </div>
+                <div class="p-2 col-4">
+                    {{ form.last_name.label }}
+                    {{ form.last_name(class = "form-control") }}
+                </div>
+                <div class="p-2 col-4">
+                    {{ form.phone_number.label }}
+                    {{ form.phone_number(class = 'form-control') }}
+                </div>
             </div>
-            <div class="form-group col-md-6">
-                {{ form.last_name.label }}
-                {{ form.last_name(class = "form-control") }}
+            <div class='d-flex flex-row justify-content-between'>
+                <div class='p-2 col-8'>
+                    {{ form.street_address.label }}
+                    {{ form.street_address(class = 'form-control') }}
+                </div>
+                <div class="p-2 col-4">
+                    {{ form.city.label }}
+                    {{ form.city(class = 'form-control') }}
+                </div>
             </div>
-        </div>
-        <div class="form-group col-md-6">
-            {{ form.phone_number.label }}
-            {{ form.phone_number(class = 'form-control') }}
-        </div> <div class="form-group col-md-6">
-            {{ form.street_address.label }}
-            {{ form.street_address(class = 'form-control') }}
-        </div>
-        <div class="form-group col-md-6">
-            {{ form.city.label }}
-            {{ form.city(class = 'form-control') }}
-        </div>
-        <!-- Need to figure this one out -->
-        <div class="form-group col-md-4">
-            <label for="inputState">State</label>
-            <select id="inputState" class="form-control">
-                <option selected>Choose...</option>
-                {% for state in states %}
 
-                    <option>{{ state }}</option>
+            <div class="d-flex flex-row">
+                <div class='p-2 col-5'>
+                    {{ form.state.label }}
+                        <select name="state" class="form-control">
+                            <option selected>Choose...</option>
+                                {% for state in states %}
+                                    <option>{{ state }}</option>
+                                {% endfor %}
+                        </select>
+                </div>
+                <div class="p-2 col-5">
+                    {{ form.country.label }}
+                        <select name="country" class="form-control">
+                            <option selected>Choose...</option>
+                                {% for country in countries %}
+                                    <option>{{ country }}</option> 
+                                {% endfor %}
+                        </select>
+                </div>
+                <div class='p-2 col-2'>
+                    {{ form.zip_code.label }}
+                    {{ form.zip_code(class = 'form-control') }}
+                </div>
+            </div>
 
-                {% endfor %}
-                <!-- <option>Alabama</option>
-                <option>Alaska</option>
-                <option>Arizona</option>
-                <option>Arkansas</option>
-                <option>California</option>
-                <option>Colorodo</option>
-                <option>Connecticut</option>
-                <option>Delware</option>
-                <option>Florida</option>
-                <option>Georgie</option>
-                <option>Hawaii</option>
-                <option>Idaho</option>
-                <option>Illinois</option>
-                <option>Indiana</option>
-                <option>Iowa</option>
-                <option>Kansas</option>
-                <option>Kentucky</option>
-                <option>Louisiana</option>
-                <option>Maine</option>
-                <option>Maryland</option>
-                <option>Massachusetts</option>
-                <option>Michigan</option>
-                <option>Minnesota</option>
-                <option>Mississippi</option>
-                <option>Missouri</option>
-                <option>Montana</option>
-                <option>Nebraska</option>
-                <option>Nevada</option>
-                <option>New Hampshire</option>
-                <option>New Jersey</option>
-                <option>New Mexico</option>
-                <option>New York</option>
-                <option>North Carolina</option>
-                <option>North Dakota</option>
-                <option>Ohio</option>
-                <option>Oklahoma</option>
-                <option>Oregon</option>
-                <option>Pennsylvania</option>
-                <option>Rhode Island</option>
-                <option>South Carolina</option>
-                <option>Tennessee</option>
-                <option>Texas</option>
-                <option>Utah</option>
-                <option>Vermont</option>
-                <option>Virginia</option>
-                <option>Washington</option>
-                <option>West Virgina</option>
-                <option>Wisconsin</option>
-                <option>Wyoming</option>
-                <option>N/A</option> -->
-        
-            </select>
-            <div>
-                {{ form.country.label }}
-                {{ form.country(class = 'form-control form-group col-md-6') }}
+            <div class="d-flex flex-column">
+                {{ form.submit(class='btn btn-secondary mt-3') }}
             </div>
-            </div>
-            <div>
-                {{ form.zip_code.label }}
-                {{ form.zip_code(class = 'form-control form-group col-md-2') }}
-            </div>
-            <div>
-                {{ form.submit(class='btn btn-primary w-5 mt-3') }}
-            </div>
-        </div>
-    </form>
-</form>
-
+        </form>
+    </div>
+</div>
 
 {% endblock content %}

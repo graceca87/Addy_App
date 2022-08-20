@@ -4,36 +4,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 
-class Contact(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(50), nullable=False)
-    last_name = db.Column(db.String(50), nullable=False)
-    phone_number = db.Column(db.String(15), nullable=False)
-    street_address = db.Column(db.String(50), nullable=False)
-    city = db.Column(db.String(10), nullable=False)
-    state = db.Column(db.String(10), nullable=False)
-    country = db.Column(db.String(10), nullable=False)
-    zip_code = db.Column(db.String(10), nullable=False)
-    email = db.Column(db.String(50), nullable=False)
-    date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        db.session.add(self)
-        db.session.commit()
-
-    def __repr__(self):
-        return f'<Address | {self.street_address}>'
-
-    def __str__(self):
-        return f"""
-        Name: {self.first_name}{self.last_name}
-        Phone Number: {self.phone_number}
-        Address: {self.street_address}
-        Email: {self.email}
-        """
-
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(50), nullable=False, unique=True)
@@ -65,3 +35,31 @@ class User(db.Model, UserMixin):
 def load_user(user_id):
     return User.query.get(user_id)
 
+class Contact(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(50), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
+    phone_number = db.Column(db.String(20), nullable=False)
+    street_address = db.Column(db.String(100), nullable=False)
+    city = db.Column(db.String(20), nullable=False)
+    state = db.Column(db.String(15), nullable=False)
+    country = db.Column(db.String(25), nullable=False)
+    zip_code = db.Column(db.String(15), nullable=False)
+    date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        db.session.add(self)
+        db.session.commit()
+
+    def __repr__(self):
+        return f'<Address | {self.street_address}>'
+
+    def __str__(self):
+        return f"""
+        Name: {self.first_name}{self.last_name}
+        Phone Number: {self.phone_number}
+        Address: {self.street_address}
+        Email: {self.email}
+        """

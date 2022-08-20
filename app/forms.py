@@ -6,14 +6,13 @@ from wtforms.validators import InputRequired, EqualTo, Length
 class AddyForm(FlaskForm):
     first_name = StringField('First Name', validators= [InputRequired()])
     last_name = StringField('Last Name', validators= [InputRequired()])
-    phone_number = StringField('Phone Number', validators= [InputRequired(), Length(min=7, max=14)])
+    phone_number = StringField('Phone Number', validators= [InputRequired(), Length(min=7, max=20)])
     street_address = StringField('Street Address', validators= [InputRequired()])
     city = StringField('City', validators= [InputRequired()])
     state = StringField('State', validators= [InputRequired()])
     country = StringField('Country', validators= [InputRequired()])
     zip_code = StringField('Zip Code', validators= [InputRequired()])
-    email = StringField('Email')
-    submit = SubmitField('Submit', validators= [InputRequired()])
+    submit = SubmitField('Add Addy')
 
 
 class SignUpForm(FlaskForm):

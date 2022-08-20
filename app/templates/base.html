@@ -8,26 +8,33 @@
         <meta name="Description" content="Enter your description here" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-        <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+        <link rel="stylesheet" href="style.css">
         <title>{% block title %}{% endblock title %}</title>
     </head>
     <body style="background-color:#ffecd1;">
         <!-- Navbar Goes Here -->
-        <nav class="navbar" style="background-color: #be0f6f;">
-            <!-- Navbar content -->
-            <ul class="nav justify-content-center">
-                <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="page" href="{{ url_for('index') }}">Home</a>
-                        {% if current_user.is_authenticated %}
-                        <a class="nav-link " href="{{ url_for('add_addy') }}">Add New Addy</a>
-                        <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
-                        {% else %}
-                        <a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a>
-                        <a class="nav-link" href="{{ url_for('login') }}">Log In</a>
-                        {% endif %}
-                </li>
-            </ul>
+        <nav class="navbar navbar-expand-lg" style='background-color: #f354b0;'>
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" href="{{ url_for('index') }}">Addy</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end
+                " id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link text-white" href="{{ url_for('index') }}">Home</a>
+                        <a class="nav-link text-white" href="{{ url_for('login') }}">Login</a>
+                        <a class="nav-link text-white" href="{{ url_for('signup') }}">Sign Up</a>
+                        <a class="nav-link text-white" href="{{ url_for('add_addy') }}">Add Addy</a>
+                    </div>
+                </div>
+            </div>
         </nav>
+
+
+        
         <!-- Start Container -->
         <div class="container">
             {% include 'alert.html' %}
@@ -35,15 +42,10 @@
             {% block content %}
             {% endblock content %}
         </div>
-
-    <footer class="row text-white" style="background-color: #7760e9">
-
-    </footer>
-        </div>
-          
-        </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
     </body>
-
+    <!-- <footer class="row text-white" style="background-color: #7760e9">
+        <h5>Hello!</h5>
+    </footer> -->
 </html>
