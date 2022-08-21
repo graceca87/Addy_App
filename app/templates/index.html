@@ -3,15 +3,67 @@
 {% block title %} Home {% endblock title %}
 
 {% block content %}
+
 {% if current_user.is_authenticated %}
-<h6 class="text-center">Signed in as: {{ current_user.username }}</h6>
+
+<h4 class="m-4">{{ current_user.username }}'s Addy Book</h4>
 
 {% for contact in contacts %}
-<div class="card">
-    <div class="card-body">
-        <a href="{{ url_for('view_addy_book', contact_id=contact.id) }}">
-            <h5 class="card-title">{{ contact.first_name }}</h5>
-        </a>
+
+<div class="d-flex">
+    <div class="card pt-3 m-3" style="width: 18rem;">
+        <div class="card-body text-center">
+            <div class="d-flex flex-row justify-content-around">
+                 <h5 class="card-title">{{ contact.first_name }} {{ contact.last_name }}</h5>
+            </div>
+            <div class="d-flex flex-row justify-content-around">
+                <p class="card-text">{{ contact.street_address }}</p>
+            </div>
+            <div class="d-flex flex-row justify-content-around">
+                <p class="card-text">{{ contact.city }}, {{ contact.state }}</p>
+            </div>
+            <div class="d-flex flex-row justify-content-around">
+                <p class="card-text">{{ contact.country }} {{ contact.zip_code }}</p>
+            </div>
+            <div class="d-flex flex-row justify-content-around">
+                <p class="card-text">{{ contact.phone_number }}</p>
+            </div>
+            <br>
+            <div class="d-flex flex-row justify-content-around">
+                <div class='p-2 col-6'>
+                    <p><a href="{{ url_for('delete_addy', contact_id=contact.id) }}" class="btn btn-colour-1" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal">Delete</a></p>
+                </div>
+                <div class='p-2 col-6'>
+                    <p><a href="{{ url_for('edit_addy', contact_id=contact.id) }}" class="btn btn-outline">Edit Addy</a></p>
+                </div>
+            </div>
+            <div class="d-flex flex-row justify-content-around">
+            <p class="card-text"><small class="text-muted">Last updated {{ contact.date_created.strftime('%B %d, %Y') }}</small></p>
+            </div>
+        </div>        
+    </div>
+</div>
+
+
+<!-- Delete button triggers Modal -->
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Are you sure?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete {{ contact.first_name }} {{ contact.last_name }}'s address? This action
+                cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="{{ url_for('delete_addy', contact_id=contact.id) }}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
     </div>
 </div>
 {% endfor %}

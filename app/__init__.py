@@ -3,10 +3,14 @@ from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
+import os
 
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
+IMG_FOLDER = os.path.join('static', 'IMG')
+app.config['UPLOAD_FOLDER'] = IMG_FOLDER
 
 # Create an instance of SQLAlchemy (the ORM) with the Flask Application
 db = SQLAlchemy(app)

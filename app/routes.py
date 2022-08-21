@@ -6,7 +6,6 @@ from app.models import User, Contact
 
 
 
-
 @app.route('/signup', methods=["GET", "POST"])
 def signup():
     form = SignUpForm()
@@ -40,8 +39,6 @@ def login():
         if user is not None and user.check_password(password):
             # Log the user in with the login_user function from flask_login
             login_user(user)
-            # Flash a success message
-            flash(f'Welcome back {user.username}!', 'success')
             # Redirect back to the home pageUnboundLocalError: local variable 'user' referenced before assignment
             return redirect(url_for('index'))
         # If no user with username or password incorrect
@@ -84,7 +81,7 @@ def add_addy():
         country = form.country.data
         zip_code = form.zip_code.data
         contact = Contact(first_name=first_name, last_name=last_name, phone_number=phone_number, street_address=street_address, city=city, state=state, country=country, zip_code=zip_code, user_id=current_user.id)
-        flash(f'{first_name}{last_name}\'s Addy has been added.', 'secondary')
+        flash(f'{first_name} {last_name}\'s Addy has been added.', 'info')
         return redirect(url_for('index'))
     return render_template('add_addy.html', form=form, states=states, countries=countries)
 
@@ -117,7 +114,7 @@ def edit_addy(contact_id):
         country = form.country.data
         zip_code = form.zip_code.data
         contact_to_edit.update(first_name=first_name, last_name=last_name, phone_number=phone_number, street_address=street_address, city=city, state=state, country=country, zip_code=zip_code, user_id=current_user.id)
-        flash(f'{contact_to_edit.first_name}{contact_to_edit.last_name}\'s Addy has been updated', 'success')
+        flash(f"{contact_to_edit.first_name} {contact_to_edit.last_name}'s Addy has been updated", 'success')
         return redirect(url_for('index', contact_id=contact_id))
     return render_template('edit_addy.html', contact=contact_to_edit, form=form, states=states, countries=countries)
 
