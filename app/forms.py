@@ -12,7 +12,7 @@ class AddyForm(FlaskForm):
     state = StringField('State', validators= [InputRequired()])
     country = StringField('Country', validators= [InputRequired()])
     zip_code = StringField('Zip Code', validators= [InputRequired()])
-    submit = SubmitField('Add Addy')
+    submit = SubmitField()
 
 
 class SignUpForm(FlaskForm):

@@ -56,10 +56,13 @@ class Contact(db.Model):
     def __repr__(self):
         return f'<Address | {self.street_address}>'
 
-    def __str__(self):
-        return f"""
-        Name: {self.first_name}{self.last_name}
-        Phone Number: {self.phone_number}
-        Address: {self.street_address}
-        Email: {self.email}
-        """
+
+    def update(self, **kwargs):
+        for key, value in kwargs.items():
+            if key in ("first_name","last_name", "phone_number" "street_address", "city", "state", "country", "zip_code"):
+                setattr(self, key, value)
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()

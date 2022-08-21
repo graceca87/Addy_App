@@ -3,9 +3,21 @@
 {% block title %} Home {% endblock title %}
 
 {% block content %}
-<h1 class="text-center mt-5"> Address Book</h1>
-<h5 class="text-center text primary pt-2" ,>Get addresses & keep your contacts organized in one place</h5>
+{% if current_user.is_authenticated %}
+<h6 class="text-center">Signed in as: {{ current_user.username }}</h6>
 
-{{ form }}
+{% for contact in contacts %}
+<div class="card">
+    <div class="card-body">
+        <a href="{{ url_for('view_addy_book', contact_id=contact.id) }}">
+            <h5 class="card-title">{{ contact.first_name }}</h5>
+        </a>
+    </div>
+</div>
+{% endfor %}
+
+{% else %}
+<h5 class="text-center">sign up or log in to get started</h5>
+{% endif %}
 
 {% endblock content %}
