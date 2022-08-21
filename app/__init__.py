@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 
+
 app = Flask(__name__)
 app.config.from_object(Config)
 
@@ -17,5 +18,6 @@ login = LoginManager(app)
 login.login_view = 'login' # Tells login manager which enpoint to redirect if not logged in
 login.login_message = 'You must be logged in to view or edit addresses, you silly goose!'
 login.login_category = 'danger'
+
 
 from . import routes, models

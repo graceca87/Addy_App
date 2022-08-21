@@ -56,10 +56,9 @@ class Contact(db.Model):
     def __repr__(self):
         return f'<Address | {self.street_address}>'
 
-
     def update(self, **kwargs):
         for key, value in kwargs.items():
-            if key in ("first_name","last_name", "phone_number" "street_address", "city", "state", "country", "zip_code"):
+            if key in {"first_name","last_name", "phone_number", "street_address", "city", "state", "country", "zip_code"}:
                 setattr(self, key, value)
         db.session.commit()
 
