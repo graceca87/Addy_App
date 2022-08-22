@@ -14,9 +14,7 @@
   background: #4fbfa8;
   color: #ffffff;
   border-color: #4fbfa8;
-  
 }
-
 
 .btn-colour-1 {
   color: rgb(226, 9, 139);
@@ -36,22 +34,6 @@
   border-color: rgb(226, 9, 139);
 }
 
-
-body {
-  padding: 20px 0;
-  font-family: Roboto, sans-serif;
-}
-
-h1 {
-  font-weight: 300;
-  margin-bottom: 40px;
-}
-
-.card-rounded {
-  border-radius: 20px;
-}
-
-
 .btn-colour-2 {
   color: #fff;
   background-color: #004E64;
@@ -65,8 +47,11 @@ h1 {
 .btn-colour-2:active,
 .btn-colour-2:focus,
 .btn-colour-2.active {
-  /* let's darken #004E64 a bit for hover effect */
   background: #003D4F;
   color: #ffffff;
   border-color: #003D4F;
+}
+
+.card-1 {
+  border-color: #ffecd1;
 }
