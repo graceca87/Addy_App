@@ -4,8 +4,11 @@
 
 {% block content %}
 <h1 class="text-center mt-5">Welcome to Addy!</h1>
-<h3 class="text-center text primary pt-2">The better way to collect and store your addresses</h3>
-
-
+<h3 class="text-center text primary pt-2" style="color:rgb(12, 106, 92)">The better way to collect and store your addresses</h3>
+<br>
+<h3 class="text-center text primary pt-2">Log in to view your Addy Book or</h3>
+<div class="d-flex justify-content-around">
+    <a href="{{ url_for('signup') }}" class="btn btn-colour-1 mt-3 w-50">Click here to get started</a>
+</div>
 
 {% endblock content %}

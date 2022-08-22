@@ -53,7 +53,7 @@ def login():
 def logout():
     logout_user()
     flash('You have successfully logged out.', 'primary')
-    return redirect(url_for('index'))
+    return redirect(url_for('home'))
 
 @app.route('/addy_book')
 def index():
@@ -84,12 +84,6 @@ def add_addy():
         flash(f'{first_name} {last_name}\'s Addy has been added.', 'info')
         return redirect(url_for('index'))
     return render_template('add_addy.html', form=form, states=states, countries=countries)
-
-@app.route('/contact/<contact_id>')
-@login_required
-def view_addy_book(contact_id):
-    contact = Contact.query.get_or_404(contact_id)
-    return render_template('addy.html', contact=contact)
 
 
 @app.route('/contacts/<contact_id>/edit', methods=["GET", "POST"])
@@ -126,7 +120,6 @@ def delete_addy(contact_id):
     if contact_to_delete.book_owner != current_user:
         flash('You do not have permission to delete this address', 'danger')
         return redirect(url_for('index'))
-    # delete the post
     contact_to_delete.delete()
     flash(f"{contact_to_delete.first_name}{contact_to_delete.last_name}'s address has been deleted", 'info')
-    return redirect(url_for('index'))
+    return redirect(url_for('index', contact=contact_to_delete))
