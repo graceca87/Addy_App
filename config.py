@@ -8,3 +8,4 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 IMG_FOLDER = os.path.join('static', 'IMG')
+

@@ -25,3 +25,4 @@ login.login_category = 'danger'
 
 
 from . import routes, models
+app.run()
